@@ -57,18 +57,6 @@ class Employee(User, ParentModel):
         verbose_name="Identification", max_length=10, validators=[validate_identification]
     )
 
-    objects = StatusManager()
-
-    class Meta:
-        verbose_name = "Employee"
-        verbose_name_plural = "Employees"
-
-    def __str__(self):
-        return f"ID: {self.id}, Name: {self.first_name}, Identification: {self.identification}"
-
-
-class EmployeeInformation(ParentModel):
-    employee = models.ForeignKey(Employee, on_delete=models.PROTECT)
     birth_date = models.DateField(verbose_name="Birth Date")
     home_address = models.CharField(verbose_name="Home Address", max_length=250)
     phone_number = models.CharField(verbose_name="Phone Number", max_length=10)
@@ -85,9 +73,8 @@ class EmployeeInformation(ParentModel):
     objects = StatusManager()
 
     class Meta:
-        verbose_name = "Employee Information"
-        verbose_name_plural = "Employees Information"
+        verbose_name = "Employee"
+        verbose_name_plural = "Employees"
 
     def __str__(self):
-        return f"ID: {self.id}, Employee ID: {self.employee.id}, " \
-               f"Vaccination Status: {self.get_vaccination_status_display()}"
+        return f"ID: {self.id}, Name: {self.first_name}, Identification: {self.identification}"
