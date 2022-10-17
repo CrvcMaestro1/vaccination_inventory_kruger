@@ -1,5 +1,7 @@
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.db import models
+from random_username.generate import generate_username
 
 from transactions.model_validators import validate_identification, validate_only_letters_and_spaces
 
@@ -54,10 +56,10 @@ class Employee(User, ParentModel):
         self._meta.get_field('last_name').validators = [validate_only_letters_and_spaces]
 
     identification = models.CharField(
-        verbose_name="Identification", max_length=10, validators=[validate_identification]
+        verbose_name="Identification", max_length=10, validators=[validate_identification], unique=True
     )
 
-    birth_date = models.DateField(verbose_name="Birth Date", blank=True)
+    birth_date = models.DateField(verbose_name="Birth Date", blank=True, null=True)
     home_address = models.CharField(verbose_name="Home Address", max_length=250, blank=True)
     phone_number = models.CharField(verbose_name="Phone Number", max_length=10, blank=True)
     vaccination_status = models.CharField(
@@ -67,8 +69,8 @@ class Employee(User, ParentModel):
     vaccine_type = models.CharField(
         verbose_name="Vaccine Type", choices=VaccineType.choices, max_length=50, blank=True
     )
-    vaccination_date = models.DateField(verbose_name="Vaccination Date", blank=True)
-    doses_number = models.IntegerField(verbose_name="Doses Number", blank=True)
+    vaccination_date = models.DateField(verbose_name="Vaccination Date", blank=True, null=True)
+    doses_number = models.IntegerField(verbose_name="Doses Number", blank=True, null=True)
 
     objects = StatusManager()
 
@@ -78,3 +80,14 @@ class Employee(User, ParentModel):
 
     def __str__(self):
         return f"ID: {self.id}, Name: {self.first_name}, Identification: {self.identification}"
+
+    @staticmethod
+    def generate_username():
+        random_user = generate_username(1)[0]
+        while Employee.objects.filter(username=random_user).exists():
+            random_user = generate_username(1)[0]
+        return random_user
+
+    @staticmethod
+    def generate_password(identification):
+        return make_password(identification)

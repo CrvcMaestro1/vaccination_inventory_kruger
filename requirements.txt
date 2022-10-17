@@ -10,3 +10,4 @@ six==1.16.0
 dj_database_url==1.0.0
 requests==2.27.1
 django-cors-headers==3.13.0
+random-username==1.0.2
