@@ -1,0 +1,36 @@
+[
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+      "name": "ADMINISTRATOR",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+      "name": "EMPLOYEE",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$JwkIUnsquRJX2JUDoOHiSq$Ql8MGTHkfPF4tBKErwepQRgW7E0JoB5kU2DtHX29PY8=",
+      "last_login": "2022-10-17T17:47:55.215Z",
+      "is_superuser": true,
+      "username": "kruger",
+      "first_name": "",
+      "last_name": "",
+      "email": "kruger@kruger.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2022-10-17T17:47:43.427Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
