@@ -32,5 +32,13 @@
       "groups": [],
       "user_permissions": []
     }
+  },
+  {
+    "model": "auth.user_groups",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "group": 1
+    }
   }
 ]
