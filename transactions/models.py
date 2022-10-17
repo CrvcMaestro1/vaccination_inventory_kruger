@@ -57,9 +57,9 @@ class Employee(User, ParentModel):
         verbose_name="Identification", max_length=10, validators=[validate_identification]
     )
 
-    birth_date = models.DateField(verbose_name="Birth Date")
-    home_address = models.CharField(verbose_name="Home Address", max_length=250)
-    phone_number = models.CharField(verbose_name="Phone Number", max_length=10)
+    birth_date = models.DateField(verbose_name="Birth Date", blank=True)
+    home_address = models.CharField(verbose_name="Home Address", max_length=250, blank=True)
+    phone_number = models.CharField(verbose_name="Phone Number", max_length=10, blank=True)
     vaccination_status = models.CharField(
         verbose_name="Vaccination Status", choices=VaccinationStatus.choices, max_length=50,
         default=VaccinationStatus.non_vaccinated, blank=True
