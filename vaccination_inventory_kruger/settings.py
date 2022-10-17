@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "corsheaders",
     "rest_framework",
+    "rest_framework.authtoken",
     "transactions",
 ]
 

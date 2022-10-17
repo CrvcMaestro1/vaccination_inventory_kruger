@@ -1,10 +1,10 @@
 from django.urls import path
 
-from transactions.views import room_view
-from transactions.views import customer_view
-from transactions.views import event_view
+from transactions.views.auth_view import AuthView, LogoutView
 
 urlpatterns = [
+    path('api-token-auth/', AuthView.as_view()),
+    path('api-token-logout/', LogoutView.as_view())
     # path("room", room_view.RoomAPIView.as_view(), name="room"),
     # path("room/<int:pk>", room_view.RoomAPIView.as_view(), name="room-by-pk"),
     # path("customer", customer_view.CustomerAPIView.as_view(), name="customer"),
