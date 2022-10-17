@@ -59,6 +59,10 @@ class Employee(User, ParentModel):
 
     objects = StatusManager()
 
+    class Meta:
+        verbose_name = "Employee"
+        verbose_name_plural = "Employees"
+
     def __str__(self):
         return f"ID: {self.id}, Name: {self.first_name}, Identification: {self.identification}"
 
@@ -79,6 +83,10 @@ class EmployeeInformation(ParentModel):
     doses_number = models.IntegerField(verbose_name="Doses Number", blank=True)
 
     objects = StatusManager()
+
+    class Meta:
+        verbose_name = "Employee Information"
+        verbose_name_plural = "Employees Information"
 
     def __str__(self):
         return f"ID: {self.id}, Employee ID: {self.employee.id}, " \
