@@ -3,8 +3,10 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 
+from transactions.services.interfaces.auth_service import AuthService
 
-class AuthService:
+
+class DefaultAuthService(AuthService):
     serializer_class = AuthTokenSerializer
 
     def auth(self, request):
@@ -14,7 +16,6 @@ class AuthService:
         token, created = Token.objects.get_or_create(user=user)
         return Response({'token': token.key, 'email': user.email}, status=status.HTTP_200_OK)
 
-    @staticmethod
-    def logout(request):
+    def logout(self, request):
         request.user.auth_token.delete()
         return Response(status=status.HTTP_200_OK)
