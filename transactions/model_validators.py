@@ -16,7 +16,7 @@ def validate_identification(value):
 
 
 def validate_only_letters_and_spaces(value):
-    if not re.match(r'^[a-zA-Z ]+$', value):
+    if not re.match(r'^[a-zA-Z_ÑñÁáÉéÍíÓóÚú ]+$', value):
         raise ValidationError(
             _('This field must contain only letters.'),
         )
