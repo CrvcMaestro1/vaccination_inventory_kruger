@@ -1,18 +1,12 @@
 from django.urls import path
 
-from transactions.views import employee_view
+from transactions.views import employee_by_admin_view, employee_view
 from transactions.views.auth_view import AuthView, LogoutView
 
 urlpatterns = [
     path('api-token-auth/', AuthView.as_view()),
     path('api-token-logout/', LogoutView.as_view()),
-    path("employee", employee_view.EmployeeByAdminAPIView.as_view(), name="employee"),
-    path("employee/<int:pk>", employee_view.EmployeeByAdminAPIView.as_view(), name="employee-by-pk"),
-    # path("customer", customer_view.CustomerAPIView.as_view(), name="customer"),
-    # path("customer/<int:pk>", customer_view.CustomerAPIView.as_view(), name="customer-by-pk"),
-    # path("event", event_view.EventAPIView.as_view(), name="event"),
-    # path("event/<int:pk>", event_view.EventAPIView.as_view(), name="event-by-pk"),
-    # path("event/public", event_view.EventPublicAPIView.as_view(), name="event-public"),
-    # path("event/book/<int:pk>", event_view.BookEventAPIView.as_view(), name="event-book"),
-    # path("event/cancel/<int:pk>", event_view.CancelBookingAPIView.as_view(), name="cancel-booking"),
+    path("employee", employee_by_admin_view.EmployeeByAdminAPIView.as_view(), name="employee"),
+    path("employee/<int:pk>", employee_by_admin_view.EmployeeByAdminAPIView.as_view(), name="employee-by-pk"),
+    path("employee/my", employee_view.EmployeeAPIView.as_view(), name="employee-info")
 ]

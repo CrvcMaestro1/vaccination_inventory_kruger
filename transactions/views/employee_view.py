@@ -1,22 +1,16 @@
 from rest_framework import views
 from rest_framework.authentication import TokenAuthentication
-from transactions.permissions import IsAdminAuthenticated
-from transactions.services.default_employee_service import DefaultEmployeeByAdminService
+from transactions.permissions import IsEmployeeAuthenticated
+from transactions.services.default_employee_service import DefaultEmployeeService
 
 
-class EmployeeByAdminAPIView(views.APIView):
+class EmployeeAPIView(views.APIView):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAdminAuthenticated]
-    employee_admin_service = DefaultEmployeeByAdminService()
+    permission_classes = [IsEmployeeAuthenticated]
+    employee_service = DefaultEmployeeService()
 
-    def get(self, request, pk=None, *args, **kwargs):
-        return self.employee_admin_service.get(pk, request)
+    def get(self, request, *args, **kwargs):
+        return self.employee_service.get(request)
 
-    def post(self, request, *args, **kwargs):
-        return self.employee_admin_service.create(request)
-
-    def put(self, request, pk, *args, **kwargs):
-        return self.employee_admin_service.update(pk, request)
-
-    def delete(self, request, pk, *args, **kwargs):
-        return self.employee_admin_service.delete(pk)
+    def put(self, request, *args, **kwargs):
+        return self.employee_service.update_my_info(request)
